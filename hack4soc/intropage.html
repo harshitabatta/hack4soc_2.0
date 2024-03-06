@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FinQuest</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color:  #85dcb8;
+  }
+
+  header {
+    background-color: #ffffff;
+    color: #000000;
+    padding: 10px;
+    text-align: center;
+    position: relative;
+  }
+
+  header h1 {
+    margin: 0;
+  }
+
+  .top-links {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
+  .top-links a {
+    color: #050505;
+    text-decoration: none;
+    margin-left: 10px;
+  }
+
+  .menu-icon {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: #000000;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  .button-container {
+    background-color: #fdfdfd;
+    padding: 10px;
+    display: none;
+  }
+
+  .button-container ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .button-container ul li {
+    display: inline;
+    margin-right: 20px;
+  }
+
+  .content {
+    margin-top: 20px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  aside {
+    flex-basis: 30%;
+  }
+
+  footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+
+  .fact-container {
+    flex-basis: 65%;
+    background-color: #f9d4d4; /* Light pink background color */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+
+  .fact-container h2 {
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  .fact-text {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 20px;
+  }
+
+  .know-more-button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .know-more-button:hover {
+    background-color: #555;
+  }
+
+  .icon {
+    font-size: 48px;
+    color: #ff6384;
+  }
+  .saving-goals-container {
+    flex-basis: 30%;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+
+  .saving-goals-container h2 {
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  .saving-goals-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .saving-goals-input {
+    margin-bottom: 10px;
+    padding: 8px;
+    width: 80%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+
+  .saving-goals-button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .saving-goals-button:hover {
+    background-color: #555;
+  }
+</style>
+</head>
+<body>
+<header>
+  <i class="fas fa-bars menu-icon" onclick="toggleMenu()"></i>
+  <h1>Fin Quest</h1>
+  <div class="top-links">
+    <a href="wordle.html"><i class="fas fa-gamepad"></i> Wordle</a>
+    <a href="signup.html"><i class="fas fa-user-plus"></i> Signup</a>
+    <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+    <a href="profile.html"><i class="fas fa-user"></i> Profile</a>
+
+  </div>
+</header>
+<div class="button-container">
+  <button onclick="location.href='courses.html'">Courses</button>
+  <button onclick="location.href='quizft.html'">Quiz</button>
+  <button onclick="location.href='points.html'">Points</button>
+  <button onclick="location.href='pie_chart.html'">Chart</button>
+</div>
+<div class="content">
+  <div class="fact-container">
+    <h2>Fact of the Day</h2>
+    <p class="fact-text" id="fact-text">Loading...</p>
+    <button class="know-more-button" onclick="openMoreInfo()">Know More</button>
+  </div>
+  <aside class="saving-goals-container">
+    <h2>Saving Goals</h2>
+    <form class="saving-goals-form" onsubmit="return false;">
+      <input class="saving-goals-input" type="text" placeholder="Enter your saving goal">
+      <input class="saving-goals-input" type="text" placeholder="Enter amount">
+      <button class="saving-goals-button" onclick="saveSavingGoal()">Save Goal</button>
+    </form>
+  </aside>
+</div>
+<footer>
+</footer>
+
+<script>
+  function toggleMenu() {
+    const navMenu = document.querySelector('.button-container');
+    navMenu.style.display = navMenu.style.display === 'block' ? 'none' : 'block';
+  }
+
+  // Financial facts array
+  const financialFacts = [
+    {
+      fact: "The New York Stock Exchange (NYSE) is the largest stock exchange in the world by market capitalization.",
+      link: "https://www.nyse.com"
+    },
+    {
+      fact: "The concept of insurance dates back to ancient civilizations such as Babylonians, Greeks, and Romans.",
+      link: "https://en.wikipedia.org/wiki/History_of_insurance"
+    },
+    {
+      fact: "The first credit card was introduced in 1950 by Diners Club, allowing consumers to pay for their purchases with a card rather than cash.",
+      link: "https://www.history.com/topics/inventions/history-of-credit-cards"
+    },
+    {
+      fact: "The United States dollar ($) is the most widely used currency in the world and is known as the world's primary reserve currency.",
+      link: "https://www.federalreserve.gov/faqs/currency_12770.htm"
+    }
+  ];
+
+  // Function to display a random financial fact
+  function displayFact() {
+    const randomIndex = Math.floor(Math.random() * financialFacts.length);
+    const factText = document.getElementById("fact-text");
+    factText.textContent = financialFacts[randomIndex].fact;
+    factText.dataset.link = financialFacts[randomIndex].link; // Store link as data attribute
+  }
+
+  // Open more info link
+  function openMoreInfo() {
+    const factText = document.getElementById("fact-text");
+    const link = factText.dataset.link;
+    if (link) {
+      window.open(link, "_blank"); // Open link in a new tab
+    }
+  }
+  function openDataAnalytics() {
+    window.location.href = "data_analytics.html"; // Replace with the actual URL of your data analytics page
+  }
+
+  // Display a random financial fact when the page loads
+  displayFact();
+  function saveSavingGoal() {
+    const savingGoalInput = document.querySelector('.saving-goals-input');
+    const savingGoal = savingGoalInput.value.trim();
+
+    if (savingGoal) {
+      // Implement your saving goal saving logic here
+      console.log('Saving goal:', savingGoal);
+      alert('Saving goal saved successfully!');
+    } else {
+      alert('Please enter a saving goal.');
+    }
+  }
+</script>
+</body>
+</html>
+
+
